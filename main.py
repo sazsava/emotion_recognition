@@ -26,8 +26,8 @@ class EmoRecog():
          8: 'uncertain'}
     
     def __init__(self):
-         self.model_acc = tf.keras.models.load_model(".../checkpoints/emotion_recog/acc_2blocks.h5", compile=False)
-         self.model_f1 = tf.keras.models.load_model(".../checkpoints/emotion_recog/f1_2blocks.h5", compile=False)
+         self.model_acc = tf.keras.models.load_model("./checkpoints/emotion_recog/acc_2blocks.h5", compile=False)
+         self.model_f1 = tf.keras.models.load_model("./checkpoints/emotion_recog/f1_2blocks.h5", compile=False)
          #Создадим объект класса ImageDataGenerator (для подачи в модели):
          self.test_datagen = ImageDataGenerator(rescale = 1./255, preprocessing_function=preprocess_input)
     def predict(self, img):
@@ -65,7 +65,7 @@ class VideoDisplay():
         #Проверка подключения камеры:
         if not (self.vid.isOpened()):
             print("Could not open video device")
-        self.face_detection_model = cv2.FaceDetectorYN_create('.../data/YuNet/face_detection_yunet_2023mar.onnx',
+        self.face_detection_model = cv2.FaceDetectorYN_create('./data/YuNet/face_detection_yunet_2023mar.onnx',
                           "", 
                           (self.xmax, self.ymax),                
                           score_threshold=0.5)
