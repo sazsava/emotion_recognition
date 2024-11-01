@@ -8,9 +8,18 @@ import tensorflow as tf
 #Для работы с изображениями
 import cv2
 from PIL import Image
+#Для обращения к файлам:
+import os
 #Для работы с метрикой f1-score
 import tensorflow_addons as tfa
 f1 =tfa.metrics.F1Score(num_classes=9, average='weighted')
+
+#Определим пути до наших сохраненных файлов:
+abs_path = os.path.dirname(__file__)
+acc_path = os.path.join(abs_path, "checkpoints/emotion_recog/acc_2blocks.h5")
+f1_path = os.path.join(abs_path, "checkpoints/emotion_recog/f1_2blocks.h5")
+yunet_path = os.path.join(abs_path, "data/YuNet/face_detection_yunet_2023mar.onnx")
+
 
 #Класс для получения предсказания на основании сохраненных моделей:
 class EmoRecog():
@@ -26,8 +35,8 @@ class EmoRecog():
          8: 'uncertain'}
     
     def __init__(self):
-         self.model_acc = tf.keras.models.load_model(".../checkpoints/emotion_recog/acc_2blocks.h5", compile=False)
-         self.model_f1 = tf.keras.models.load_model(".../checkpoints/emotion_recog/f1_2blocks.h5", compile=False)
+         self.model_acc = tf.keras.models.load_model(acc_path, compile=False)
+         self.model_f1 = tf.keras.models.load_model(f1_path, compile=False)
          #Создадим объект класса ImageDataGenerator (для подачи в модели):
          self.test_datagen = ImageDataGenerator(rescale = 1./255, preprocessing_function=preprocess_input)
     def predict(self, img):
@@ -65,7 +74,7 @@ class VideoDisplay():
         #Проверка подключения камеры:
         if not (self.vid.isOpened()):
             print("Could not open video device")
-        self.face_detection_model = cv2.FaceDetectorYN_create('.../data/YuNet/face_detection_yunet_2023mar.onnx',
+        self.face_detection_model = cv2.FaceDetectorYN_create(yunet_path,
                           "", 
                           (self.xmax, self.ymax),                
                           score_threshold=0.5)
