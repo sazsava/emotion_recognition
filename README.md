@@ -4,6 +4,7 @@
 ***tensorflow, keras***
 
 <img src="https://img.freepik.com/premium-vector/online-meeting-poster-retro-style-with-halftone-elements-face-eye-nose-mouth-abstract_93732-541.jpg?w=1380" width="626" height="308" />
+
 ## Назначение
 В данном проекте реализована система по распознаванию эмоций на видео в режиме реального времени. 
 
