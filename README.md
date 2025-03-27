@@ -1,5 +1,5 @@
 # Система по распознаванию эмоций
-*Дипломная работа по нмашинному обучению*
+*Дипломная работа по машинному обучению*
 
 ***tensorflow, keras***
 <img src="https://img.freepik.com/premium-vector/online-meeting-poster-retro-style-with-halftone-elements-face-eye-nose-mouth-abstract_93732-541.jpg?w=1380" width="626" height="308" />
